@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Sovereign | Atlanta Studios Official</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-red: #ff003c;
+            --deep-black: #050505;
+            --panel-gray: #121212;
+            --text-ghost: #e0e0e0;
+            --accent-cyan: #00f2ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: crosshair;
+        }
+
+        body {
+            background-color: var(--deep-black);
+            color: var(--text-ghost);
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.4;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: rgba(0, 0, 0, 0.9);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 0, 60, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .brand img {
+            height: 45px;
+            filter: drop-shadow(0 0 5px var(--primary-red));
+        }
+
+        .brand h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-red);
+            text-shadow: 0 0 10px var(--primary-red);
+        }
+
+        .login-btn {
+            background: transparent;
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            padding: 8px 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: 0.4s;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+        }
+
+        .login-btn:hover {
+            background: var(--accent-cyan);
+            color: black;
+            box-shadow: 0 0 15px var(--accent-cyan);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), var(--deep-black)), url('hero-main.jpg') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 10%;
+            border-bottom: 5px solid var(--primary-red);
+        }
+
+        .hero-tag {
+            color: var(--primary-red);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .hero h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            line-height: 0.9;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-shadow: 10px 10px 0px rgba(255, 0, 60, 0.2);
+        }
+
+        .hero p {
+            max-width: 650px;
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 20px;
+            border-left: 3px solid var(--primary-red);
+            padding-left: 20px;
+        }
+
+        /* --- MISSION DOSSIER --- */
+        .intel-section {
+            padding: 100px 10%;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .section-header h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+        }
+
+        .section-header .line {
+            flex-grow: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-red), transparent);
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .mission-card {
+            background: var(--panel-gray);
+            border: 1px solid #222;
+            transition: 0.4s;
+            overflow: hidden;
+        }
+
+        .mission-card:hover {
+            border-color: var(--primary-red);
+            transform: translateY(-5px);
+        }
+
+        .mission-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            filter: contrast(1.1);
+        }
+
+        .mission-info {
+            padding: 25px;
+        }
+
+        .mission-id {
+            color: var(--primary-red);
+            font-weight: 700;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        /* --- SYNDICATE TEAM SECTION --- */
+        .syndicate {
+            padding: 100px 10%;
+            background: #080808;
+            text-align: center;
+        }
+
+        .team-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .team-card {
+            background: linear-gradient(135deg, #111, #000);
+            border: 1px solid #222;
+            padding: 40px 20px;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .team-card:hover {
+            border-color: var(--primary-red);
+            background: linear-gradient(135deg, #1a0505, #000);
+        }
+
+        .team-card.admin {
+            border-color: var(--primary-red);
+            box-shadow: 0 0 20px rgba(255, 0, 60, 0.1);
+        }
+
+        .team-card h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .team-card .role {
+            color: var(--primary-red);
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+        }
+
+        /* --- CONTACT PANEL --- */
+        .contact-panel {
+            margin-top: 80px;
+            padding: 40px;
+            border: 1px dashed var(--accent-cyan);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-panel p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #bbb;
+        }
+
+        .email-link {
+            color: var(--accent-cyan);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            text-decoration: none;
+            border-bottom: 2px solid var(--accent-cyan);
+            transition: 0.3s;
+        }
+
+        .email-link:hover {
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        footer {
+            padding: 60px;
+            text-align: center;
+            background: #000;
+            font-size: 0.8rem;
+            color: #444;
+            border-top: 1px solid #222;
+        }
+
+        @media (max-width: 768px) {
+            .hero h2 { font-size: 3.5rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="brand">
+            <img src="studio logo.jpg" alt="Atlanta Logo">
+            <h1>Atlanta Studios</h1>
+        </div>
+        <div class="nav-links">
+            <a href="#about">The Project</a>
+            <a href="#missions">Missions</a>
+            <a href="#syndicate">The Syndicate</a>
+            <button class="login-btn" onclick="triggerLogin()">Login</button>
+        </div>
+    </nav>
+
+    <header class="hero" id="about">
+        <div class="hero-tag">System Initialization</div>
+        <h2>City Sovereign</h2>
+        <p>City Sovereign is a new tactical third-person experience currently under development by three developers. Protect high-value assets, infiltrate secure locations, and navigate a world of high-stakes betrayals.</p>
+        <button class="login-btn" style="padding: 15px 40px; font-size: 1rem;" onclick="location.href='#missions'">View Dossier</button>
+    </header>
+
+    <section class="intel-section" id="missions">
+        <div class="section-header">
+            <h3>Operational Intel</h3>
+            <div class="line"></div>
+        </div>
+        <div class="mission-grid">
+            <div class="mission-card">
+                <img src="Escort.jpg" alt="Convoy">
+                <div class="mission-info">
+                    <span class="mission-id">OP: CONVOY</span>
+                    <h4>The Escort Convoy</h4>
+                    <p>Deliver the Mafia package while managing the VIP Comfort Bar. High-intensity police evasion required[cite: 23, 27, 30].</p>
+                </div>
+            </div>
+            <div class="mission-card">
+                <img src="City view.jpg" alt="Overwatch">
+                <div class="mission-info">
+                    <span class="mission-id">OP: VANTAGE</span>
+                    <h4>Vantage Point</h4>
+                    <p>Analyze radio intel and eliminate rooftop assassins. Co-op support agents available for heavy engagement[cite: 34, 39, 41].</p>
+                </div>
+            </div>
+            <div class="mission-card">
+                <img src="Sniper scope.jpg" alt="Breach">
+                <div class="mission-info">
+                    <span class="mission-id">OP: INSIDE MEN</span>
+                    <h4>The Betrayal</h4>
+                    <p>Infiltrate the Luxury Gala. Neutralize elite AI traitors through multi-floor tactical breaching[cite: 42, 46, 48].</p>
+                </div>
+            </div>
+            <div class="mission-card">
+                <img src="mission.jpg" alt="Free Mode">
+                <div class="mission-info">
+                    <span class="mission-id">OP: SYNDICATE</span>
+                    <h4>Syndicate Network</h4>
+                    <p>Endgame open-world access. Purchase safehouses and receive dynamic phone contracts across city districts[cite: 74, 78, 79].</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="syndicate" id="syndicate">
+        <div class="section-header">
+            <h3>The Syndicate</h3>
+            <div class="line"></div>
+        </div>
+        
+        <div class="team-container">
+            <div class="team-card admin">
+                <span class="role">Lead Developer / Director</span>
+                <h4>Loid Philip</h4>
+            </div>
+            <div class="team-card">
+                <span class="role">Models Designer</span>
+                <h4>Cate Wambui</h4>
+            </div>
+            <div class="team-card">
+                <span class="role">Graphics Designer</span>
+                <h4>Denis Awajo</h4>
+            </div>
+        </div>
+
+        <div class="contact-panel">
+            <p>If you are interested in joining the team of developers either to contribute, ask for info, or join our ranks, contact the game director:</p>
+            <a href="mailto:philiploid48@gmail.com" class="email-link">philiploid48@gmail.com</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>CITY SOVEREIGN © 2026 ATLANTA STUDIOS. ALL SYSTEMS OPERATIONAL.</p>
+    </footer>
+
+    <script>
+        function triggerLogin() {
+            alert("SYSTEM NOTIFICATION: Game development in progress. Server access is currently restricted.");
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
